@@ -1,4 +1,4 @@
-package SupportingFunctions;
+package Graph.SupportingFunctions;
 
 public class MatrixPrint {
     public void printMatrix(int[][] matrix) {

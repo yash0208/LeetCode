@@ -2,62 +2,78 @@ package Graph.Traversal;
 
 import Graph.Implementation.ListImplementation;
 import Graph.Model.Graph;
-import SupportingFunctions.MapPrint;
+import Graph.SupportingFunctions.MapPrint;
 
 import java.util.*;
 
+/**
+ * This class demonstrates Breadth-First Search (BFS) traversal of an undirected graph.
+ * The traversal is performed level-wise, storing nodes at each BFS depth level.
+ */
 public class BFS {
     public static void main(String[] args) {
         // Create a sample graph
         Graph graph = new Graph();
-        // To traverse, first we make a list from this graph
+
+        // Convert graph to adjacency list representation
         ListImplementation listImplementation = new ListImplementation();
         Map<Integer, List<Integer>> mapUndirected = listImplementation.createUndirectedAdjacencyList(graph);
 
         // Print the adjacency list of the graph
         MapPrint mapPrint = new MapPrint();
-        System.out.println();
-
-        System.out.println("Graph Adjacency List: ");
+        System.out.println("\nGraph Adjacency List: ");
         mapPrint.printAdjacencyList(mapUndirected);
         System.out.println();
 
-        // List to hold the BFS traversal by levels
-        List<List<Integer>> bfsList = new ArrayList<>();
+        // Perform BFS traversal
+        List<List<Integer>> bfsList = bfsTraversal(mapUndirected, 1);
 
-        // Queue for BFS and visited array
+        // Print BFS levels
+        System.out.println("BFS Traversal (Level-wise): ");
+        for (int i = 0; i < bfsList.size(); i++) {
+            System.out.println("Level " + (i + 1) + ": " + bfsList.get(i));
+        }
+    }
+
+    /**
+     * Performs Breadth-First Search (BFS) traversal on a graph.
+     *
+     * @param graph The adjacency list representation of the graph.
+     * @param start The starting node for BFS traversal.
+     * @return A list of lists, where each inner list represents a level in BFS.
+     */
+    public static List<List<Integer>> bfsTraversal(Map<Integer, List<Integer>> graph, int start) {
+        List<List<Integer>> bfsLevels = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
-        int[] visited = new int[graph.nodes + 1]; // Assuming nodes are 1-indexed
+        Set<Integer> visited = new HashSet<>();
 
-        // Start BFS from node 1 (or any other starting node)
-        queue.add(1);
-        visited[1] = 1; // Mark node as visited
+        // Start BFS traversal from the given node
+        queue.add(start);
+        visited.add(start);
 
         while (!queue.isEmpty()) {
-            int levelSize = queue.size(); // Number of nodes at current level
-            List<Integer> currentLevel = new ArrayList<>();
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
 
-            for (int i = 0; i < levelSize; i++) {
-                int currentSrc = queue.poll();
-                currentLevel.add(currentSrc);
+            for (int i = 0; i < size; i++) {
+                int currentNode = queue.poll();
+                level.add(currentNode);
 
-                List<Integer> neighbors = mapUndirected.get(currentSrc);
-                if (neighbors != null) {
-                    for (int neighbor : neighbors) {
-                        if (visited[neighbor] == 0) { // If not visited
-                            queue.add(neighbor);
-                            visited[neighbor] = 1; // Mark as visited
-                        }
+                // Skip if node has no neighbors in the adjacency list
+                if (!graph.containsKey(currentNode)) continue;
+
+                for (Integer neighbor : graph.get(currentNode)) {
+                    if (!visited.contains(neighbor)) {
+                        queue.add(neighbor);
+                        visited.add(neighbor);
                     }
                 }
             }
-            bfsList.add(currentLevel); // Add all nodes of current level
+
+            // Add the current level to BFS result
+            bfsLevels.add(level);
         }
 
-        // Print the BFS traversal result by levels
-        System.out.println("BFS Traversal by Levels: ");
-        for (List<Integer> level : bfsList) {
-            System.out.println(level);
-        }
+        return bfsLevels;
     }
 }
