@@ -1,4 +1,4 @@
-class Solution {
+class Solution1 {
     public static int compress(char[] chars) {
         int count = 0;
         for(int i=1; i<chars.length; i++){
@@ -9,8 +9,5 @@ class Solution {
         return count;
     }
 
-    public static void main(String[] args) {
-        char[] chars= {'a','a','b','b','c','c','c'};
-        System.out.println(compress(chars));
-    }
+
 }
