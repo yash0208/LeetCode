@@ -2,16 +2,22 @@ package Graph.Implementation;
 
 import Graph.Model.Edge;
 import Graph.Model.Graph;
-import SupportingFunctions.MapPrint;
-import SupportingFunctions.MatrixPrint;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implements the adjacency list representation of a graph.
+ */
 public class ListImplementation {
-    // Method to create and return the adjacency list for an undirected graph
+
+    /**
+     * Creates and returns the adjacency list for an undirected graph.
+     *
+     * @param graph The input graph represented as an edge list.
+     * @return A map representing the adjacency list of the undirected graph.
+     */
     public Map<Integer, List<Integer>> createUndirectedAdjacencyList(Graph graph) {
         Map<Integer, List<Integer>> mapUndirected = new HashMap<>();
 
@@ -23,7 +29,7 @@ public class ListImplementation {
             mapUndirected.putIfAbsent(a, new ArrayList<>());
             mapUndirected.putIfAbsent(b, new ArrayList<>());
 
-            // Add both directions for undirected graph
+            // Add both directions for an undirected graph
             mapUndirected.get(a).add(b);
             mapUndirected.get(b).add(a);
         }
@@ -31,7 +37,12 @@ public class ListImplementation {
         return mapUndirected;
     }
 
-    // Method to create and return the adjacency list for a directed graph
+    /**
+     * Creates and returns the adjacency list for a directed graph.
+     *
+     * @param graph The input graph represented as an edge list.
+     * @return A map representing the adjacency list of the directed graph.
+     */
     public Map<Integer, List<Integer>> createDirectedAdjacencyList(Graph graph) {
         Map<Integer, List<Integer>> mapDirected = new HashMap<>();
 
@@ -42,7 +53,7 @@ public class ListImplementation {
 
             mapDirected.putIfAbsent(a, new ArrayList<>());
 
-            // Add only one direction for directed graph
+            // Add only one direction for a directed graph
             mapDirected.get(a).add(b);
         }
 
