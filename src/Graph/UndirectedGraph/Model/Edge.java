@@ -1,4 +1,4 @@
-package Graph.Model;
+package Graph.UndirectedGraph.Model;
 
 /**
  * Represents an edge in a graph.

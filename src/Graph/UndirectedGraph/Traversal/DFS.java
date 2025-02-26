@@ -1,7 +1,7 @@
-package Graph.Traversal;
+package Graph.UndirectedGraph.Traversal;
 
-import Graph.Implementation.ListImplementation;
-import Graph.Model.Graph;
+import Graph.UndirectedGraph.Implementation.ListImplementation;
+import Graph.UndirectedGraph.Model.Graph;
 import Graph.SupportingFunctions.MapPrint;
 
 import java.util.*;

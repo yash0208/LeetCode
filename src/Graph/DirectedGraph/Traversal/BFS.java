@@ -1,13 +1,13 @@
-package Graph.Traversal;
+package Graph.DirectedGraph.Traversal;
 
-import Graph.Implementation.ListImplementation;
-import Graph.Model.Graph;
 import Graph.SupportingFunctions.MapPrint;
+import Graph.DirectedGraph.Model.Graph;
+import Graph.DirectedGraph.Implementation.ListImplementation;
 
 import java.util.*;
 
 /**
- * This class demonstrates Breadth-First Search (BFS) traversal of an undirected graph.
+ * This class demonstrates Breadth-First Search (BFS) traversal of a directed graph.
  * The traversal is performed level-wise, storing nodes at each BFS depth level.
  */
 public class BFS {
@@ -17,7 +17,7 @@ public class BFS {
 
         // Convert graph to adjacency list representation
         ListImplementation listImplementation = new ListImplementation();
-        Map<Integer, List<Integer>> mapUndirected = listImplementation.createUndirectedAdjacencyList(graph);
+        Map<Integer, List<Integer>> mapUndirected = listImplementation.createDirectedAdjacencyList(graph);
 
         // Print the adjacency list of the graph
         MapPrint mapPrint = new MapPrint();

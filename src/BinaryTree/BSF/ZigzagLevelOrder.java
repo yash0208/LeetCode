@@ -1,4 +1,4 @@
-package Graph.Traversal.LeetCode.BSF;
+package BinaryTree.BSF;
 
 import BinaryTree.TreeNode;
 import java.util.*;

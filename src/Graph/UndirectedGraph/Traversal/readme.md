@@ -1,5 +1,3 @@
-Here is a professional and structured **README** for **Graph Traversal (BFS & DFS)**, including ASCII-based graph representations and explanations.
-
 ---
 
 ## 📌 **Graph Traversal: BFS & DFS**

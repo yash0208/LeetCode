@@ -1,4 +1,4 @@
-package Graph.Model;
+package Graph.DirectedGraph.Model;
 
 import java.util.ArrayList;
 import java.util.List;
