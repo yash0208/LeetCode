@@ -1,4 +1,3 @@
-
 # Graph Model (Edge List Representation)
 
 This package implements a **graph data structure** using an **edge list representation** in Java. It provides a simple way to create, manage, and print graph edges.
@@ -7,6 +6,7 @@ This package implements a **graph data structure** using an **edge list represen
 - **Edge class** to represent connections between nodes.
 - **Graph class** to store and manipulate edges.
 - **Supports both weighted and unweighted edges**.
+- **Maintains in-degree and out-degree for each node**.
 - **Edge list representation** (efficient for sparse graphs).
 
 ## 📂 Files Overview
@@ -18,6 +18,7 @@ This package implements a **graph data structure** using an **edge list represen
 ### 2️⃣ Graph.java
 - Implements a **graph** using an **edge list**.
 - Allows adding edges dynamically.
+- Maintains **in-degree and out-degree counts** for each node.
 - Prints all edges in the graph.
 
 ## 🏗️ Graph Representation
@@ -41,6 +42,15 @@ Consider a graph with **5 nodes (1, 2, 3, 4, 5)** and the following edges:
 4 → 5
 ```
 
+#### 📊 In-Degree & Out-Degree Representation:
+```
+Node 1: Out-degree = 2, In-degree = 0
+Node 2: Out-degree = 1, In-degree = 1
+Node 3: Out-degree = 1, In-degree = 1
+Node 4: Out-degree = 1, In-degree = 2
+Node 5: Out-degree = 0, In-degree = 1
+```
+
 ## 🔨 Usage
 
 ### **1️⃣ Creating a Graph**
@@ -62,3 +72,9 @@ Print all edges in the graph:
 graph.printEdges();
 ```
 
+### **4️⃣ Getting In-Degree & Out-Degree**
+Check the in-degree and out-degree of a node:
+```java
+int inDegree = graph.getInDegree(4);
+int outDegree = graph.getOutDegree(4);
+```
