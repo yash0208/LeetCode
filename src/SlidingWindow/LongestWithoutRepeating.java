@@ -4,26 +4,19 @@ import java.util.HashSet;
 
 public class LongestWithoutRepeating {
     public int lengthOfLongestSubstring(String s) {
-        int ans = 0;
-
-        char[] chars = s.toCharArray();
-        HashSet<Character> set = new HashSet<>();
-
-        int j = 0;
-        int currentLen = 0 ;
-        while (j<chars.length){
-            if(set.contains(j)){
-                ans = Math.max(ans,currentLen);
-                j++;
-                currentLen = 0;
-                set = new HashSet<>();
-            }else{
-                set.add(chars[j]);
-                currentLen ++;
+       int i = 0;
+       char[] chars = s.toCharArray();
+       int ans = Integer.MIN_VALUE;
+       int j =1;
+       while(j < chars.length) {
+            if( chars[i] == chars[j]) {
+                ans = Math.max(ans, Math.abs(i - j ));
+                i++;
+            }
+            else{
                 j++;
             }
         }
-
-        return ans;
+       return ans == Integer.MIN_VALUE ? 0 : ans;
     }
 }

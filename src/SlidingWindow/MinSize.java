@@ -2,18 +2,21 @@ package SlidingWindow;
 
 public class MinSize {
     public int minSubArrayLen(int target, int[] nums) {
-        int i = 0 ;
-        int j = 0;
-        int size = Integer.MAX_VALUE;
-        int sum = 0;
-        while (j<nums.length){
-            sum = sum + nums[j];
-            if(sum >= target) {
-                size  = Math.min(size,((j-i) + 1)) ;
-                i++;
+        if (nums == null || nums.length == 0) return 0;
+
+        int minLen = Integer.MAX_VALUE;
+        int i = 0, sum = 0;
+
+        for (int j = 0; j < nums.length; j++) {
+            sum += nums[j];  // Expand the window
+
+            while (sum >= target) {  // Shrink the window when valid
+                minLen = Math.min(minLen, j - i + 1);
+                sum -= nums[i];  // Remove the leftmost element
+                i++;  // Move left pointer forward
             }
-            j++;
         }
-        return size;
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }
+
 }
