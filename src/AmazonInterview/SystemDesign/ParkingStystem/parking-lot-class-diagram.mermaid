@@ -1,0 +1,84 @@
+classDiagram
+    class ParkingLot {
+        -instance: ParkingLot
+        -List~ParkingFloor~ floors
+        -List~Entrance~ entrances
+        -List~Exit~ exits
+        +getInstance() ParkingLot
+        +getParkingSpot(VehicleType) ParkingSpot
+        +addFloor(ParkingFloor)
+        +addEntrance(Entrance)
+        +addExit(Exit)
+    }
+    
+    class ParkingFloor {
+        -String floorId
+        -Map~VehicleType, List~ParkingSpot~~ parkingSpots
+        -DisplayBoard displayBoard
+        +getAvailableSpot(VehicleType) ParkingSpot
+        +updateDisplayBoard()
+    }
+    
+    class ParkingSpot {
+        -String spotId
+        -VehicleType type
+        -boolean isOccupied
+        -Vehicle vehicle
+        +isAvailable() boolean
+        +assignVehicle(Vehicle)
+        +removeVehicle()
+    }
+    
+    class Entrance {
+        -String entranceId
+        -TicketIssuer ticketIssuer
+        +getTicket(Vehicle) Ticket
+    }
+    
+    class Exit {
+        -String exitId
+        -PaymentProcessor paymentProcessor
+        +processPayment(Ticket) boolean
+    }
+    
+    class Ticket {
+        -String ticketId
+        -Vehicle vehicle
+        -ParkingSpot parkingSpot
+        -Date entryTime
+        -Date exitTime
+        -double amount
+        -TicketStatus status
+        +calculateFee() double
+    }
+    
+    class Vehicle {
+        -String licensePlate
+        -VehicleType type
+        +getType() VehicleType
+    }
+    
+    class PaymentProcessor {
+        +processPayment(Ticket) boolean
+    }
+    
+    class PricingStrategy {
+        <<interface>>
+        +calculatePrice(Ticket) double
+    }
+    
+    class DisplayBoard {
+        -Map~VehicleType, Integer~ availableSpots
+        +updateAvailableSpots(VehicleType, Integer)
+    }
+    
+    ParkingLot *-- ParkingFloor
+    ParkingLot *-- Entrance
+    ParkingLot *-- Exit
+    ParkingFloor *-- ParkingSpot
+    ParkingFloor *-- DisplayBoard
+    Entrance *-- TicketIssuer
+    Exit *-- PaymentProcessor
+    Vehicle -- Ticket
+    ParkingSpot -- Ticket
+    PaymentProcessor -- PricingStrategy
