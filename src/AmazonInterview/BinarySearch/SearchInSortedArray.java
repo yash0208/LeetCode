@@ -30,6 +30,6 @@ public class SearchInSortedArray {
             }
         }
 
-        return -1; // Target not found
-    }
+        return -1; // Target not foun
+        }
 }

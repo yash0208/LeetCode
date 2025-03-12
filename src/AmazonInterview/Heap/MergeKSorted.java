@@ -15,26 +15,26 @@ class ListNode {
 
 public class MergeKSorted {
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val);
 
-        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (o1, o2) -> o1.val - o2.val);
-
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-
-        for (ListNode node : lists) {
-            if (node != null) queue.add(node);
+        // Add only non-null lists to the priority queue
+        for (ListNode list : lists) {
+            if (list != null) queue.add(list);
         }
 
-        while (!queue.isEmpty()) {
-            tail.next = queue.poll();
-            tail = tail.next;
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
 
-            if (tail.next != null) queue.add(tail.next);
+        while (!queue.isEmpty()) {
+            ListNode current = queue.poll();
+            temp.next = current;
+            temp = temp.next;
+
+            // Add the next node of the current list to the queue (if it exists)
+            if (current.next != null) queue.add(current.next);
         }
 
         return dummy.next;
-
     }
 
 }
