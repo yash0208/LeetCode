@@ -25,12 +25,10 @@ public class RecipeMaker {
             while (!supplyQueue.isEmpty()){
                 String currentItem = supplyQueue.poll();
                 if(recipeSet.contains(currentItem)) resultSet.add(currentItem);
-
                     for(String item: ingredientMap.get(currentItem)){
                         inDegreeMap.put(item,inDegreeMap.get(item) -1);
                         if(inDegreeMap.get(item) == 0)  supplyQueue.add(item);
                     }
-
             }
             return resultSet;
         }

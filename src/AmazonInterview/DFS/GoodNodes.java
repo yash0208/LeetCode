@@ -9,8 +9,9 @@ public class GoodNodes {
 
     int isGoodNode(TreeNode root, int max, int count){
         if(root == null) return 0;
-        if(root.val > max) {count++;
-        max = root.val;
+        if(root.val >= max) {
+            count++;
+            max = root.val;
         }
         return isGoodNode(root.left,max,count) + isGoodNode(root.right,max,count);
     }

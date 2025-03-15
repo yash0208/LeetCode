@@ -1,4 +1,4 @@
-package AmazonInterview.Stack;
+package AmazonInterview.HashMap;
 
 import java.util.*;
 
