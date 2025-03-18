@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Unique3Digits {
-    public int totalNumbers(int[] digits) {
+    public static int totalNumbers(int[] digits) {
         HashSet<Integer> map = new HashSet<>();
         int n = digits.length;
 
